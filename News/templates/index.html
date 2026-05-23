@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>News App</h1>
+    <form method="POST">
+        <input type="text" name="topic" placeholder="search news" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% for article in articles %}
+    <p>
+        <div>Title: {{article.title}}</div>
+        Description: {{article.description}}  
+    </p>
+    
+    <a href="{{article.url}}">
+        <img src="{{article.urlToImage}}"  width="200" alt="image not found">
+    </a>
+    {% endfor %}
+</body>
+</html>

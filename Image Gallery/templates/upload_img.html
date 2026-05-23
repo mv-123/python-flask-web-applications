@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div style="text-align: center; font-size: xx-large;">
+    <form action="/uploads" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="file">Upload Image:</label>
+      <input type="file" class="form-control" id="file" name="file">
+    </div>
+    <button type="submit" class="btn btn-dark" style="align-content: center; font-size: 30px;">Submit</button>
+  </div>
+</form>
+<div class="row">
+  {% for img in files %}
+  <div class="col-sm-6">
+    <img src="{{url_for('uploaded_file', filename=img.filename)}}" class="img img-thumbnail"/>
+    <a href="{{url_for('download', file_id=img.id)}}">Download</a>
+    <a href="{{url_for('delete', file_id=img.id)}}">Delete</a>
+  </div>
+  {% endfor %}
+</div>
+<a href="/refresh" onclick="return confirm('Are you sure you want to proceed?')">Refresh</a>
+</body>
+</html>
